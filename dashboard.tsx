@@ -1,6 +1,6 @@
 // THE ROOM — the facilitator's screen.
 //
-// Forty phones each answer the same client privately. This is the moment the
+// Forty phones each answer the same question privately. This is the moment the
 // room finds out it did not answer as one: the same six records, the same
 // seventy-five seconds, and people stopped looking in completely different
 // places. Shown in stages, on a big screen, by someone who decides when the
@@ -67,7 +67,7 @@ const T = {
     stage: [
       '',
       'WHERE WE STOPPED',
-      'WHAT WE TOLD THE CLIENT',
+      'WHAT WE SENT BACK',
       'HOW SURE WE SAID WE WERE',
       'WHAT WE NEVER OPENED',
       'THE SAME KNOWLEDGE, THREE DIFFERENT STAKES',
@@ -110,7 +110,7 @@ const T = {
     aiWait: 'Reading the room…',
     share: 'Share the conclusion',
     shareText: (n: number, mode: string, top: string, pct: number) =>
-      `*NUCLEUS PULSE 02 — TRUTH*\n\n${n} of us. One client question. Six places to check. 75 seconds.\n\n🛑 Most of us stopped at *${mode}*\n💬 Most common answer → *${top}*\n⚖️ ${pct}% still said "enough" when a payment depended on it\n\nNobody told us when we knew enough.\n\nTry it:`,
+      `*NUCLEUS PULSE 02 — TRUTH*\n\n${n} of us. One question. Six places to check. 75 seconds.\n\n🛑 Most of us stopped at *${mode}*\n💬 Most common answer → *${top}*\n⚖️ ${pct}% still said "enough" when a payment depended on it\n\nNobody told us when we knew enough.\n\nTry it:`,
     next: 'next  →',
     open: 'Open a room',
     opening: 'Opening…',
@@ -128,7 +128,7 @@ const T = {
     stage: [
       '',
       'KITA BERHENTI DI MANA',
-      'YANG KITA SAMPAIKAN KE KLIEN',
+      'YANG KITA BALAS',
       'SEBERAPA YAKIN KITA WAKTU MENJAWAB',
       'YANG TIDAK PERNAH KITA BUKA',
       'PENGETAHUAN YANG SAMA, TIGA TARUHAN BERBEDA',
@@ -168,7 +168,7 @@ const T = {
     aiWait: 'Sebentar, sedang membaca ruangan…',
     share: 'Bagikan ke grup',
     shareText: (n: number, mode: string, top: string, pct: number) =>
-      `*NUCLEUS PULSE 02 — TRUTH*\n\n${n} orang. Satu pertanyaan klien. Enam tempat untuk dicek. 75 detik.\n\n🛑 Paling banyak berhenti di *${mode}*\n💬 Jawaban terbanyak → *${top}*\n⚖️ ${pct}% tetap bilang "cukup" waktu ada pembayaran yang bergantung padanya\n\nTidak ada yang memberi tahu kita kapan kita sudah cukup tahu.\n\nCoba sendiri:`,
+      `*NUCLEUS PULSE 02 — TRUTH*\n\n${n} orang. Satu pertanyaan. Enam tempat untuk dicek. 75 detik.\n\n🛑 Paling banyak berhenti di *${mode}*\n💬 Jawaban terbanyak → *${top}*\n⚖️ ${pct}% tetap bilang "cukup" waktu ada pembayaran yang bergantung padanya\n\nTidak ada yang memberi tahu kita kapan kita sudah cukup tahu.\n\nCoba sendiri:`,
     next: 'lanjut  →',
     open: 'Buka ruang',
     opening: 'Membuka…',

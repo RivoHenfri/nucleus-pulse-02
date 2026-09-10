@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PULSE 02 — TRUTH · Nucleus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+      /* Same faces as PULSE 01 — Plus Jakarta Sans for the room, Instrument
+         Serif for display — plus one addition. The six sources are records
+         from six systems, and a record set in the same face as the narration
+         reads as the app talking. IBM Plex Mono makes a spreadsheet row look
+         like a spreadsheet row, which is most of what makes the workspace
+         feel like work rather than like a quiz. */
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: #06080B;
+        overscroll-behavior: none;
+      }
+      .font-display { font-family: 'Instrument Serif', Georgia, serif; letter-spacing: 0.02em; }
+      .font-record { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+      /* Only the animations that run on their own live here. Anything whose
+         timing follows the participant is driven by Motion for React instead —
+         see components/atoms.tsx. */
+
+      /* The nucleus breathes. It does not glow for attention. */
+      @keyframes nucleusBreath {
+        0%, 100% { transform: scale(1);    opacity: 0.65; box-shadow: 0 0 14px 2px rgba(251, 224, 165, 0.16); }
+        50%      { transform: scale(1.14); opacity: 0.95; box-shadow: 0 0 22px 6px rgba(251, 224, 165, 0.26); }
+      }
+      .animate-nucleusBreath { animation: nucleusBreath 4.2s infinite ease-in-out; }
+
+      @keyframes ping {
+        0%   { transform: scale(0.9); opacity: 0.5; }
+        100% { transform: scale(1.9); opacity: 0; }
+      }
+      .animate-ping-ring { animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+      /* The clock in the workspace, and the only thing in this Pulse allowed
+         to move on its own. It does not flash, it does not turn red, and it
+         does not speed up near the end — a clock that panics is a clock
+         telling the participant when to stop, which is the one thing this
+         experience must never do. */
+      @keyframes secondTick {
+        0%, 100% { opacity: 0.55; }
+        50%      { opacity: 0.85; }
+      }
+      .animate-secondTick { animation: secondTick 2s infinite ease-in-out; }
+
+      /* A record opening. Not a reveal — a drawer. */
+      @keyframes recordIn {
+        0%   { opacity: 0; transform: translateY(-6px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .animate-recordIn { animation: recordIn 0.45s cubic-bezier(0.2, 0.9, 0.3, 1) forwards; }
+    </style>
+    <script type="module" crossorigin src="/nucleus-pulse-02/assets/main-DAOpseEz.js"></script>
+    <link rel="modulepreload" crossorigin href="/nucleus-pulse-02/assets/room-BCVDNdlD.js">
+  </head>
+  <body class="text-gray-200">
+    <div id="root"></div>
+  </body>
+</html>

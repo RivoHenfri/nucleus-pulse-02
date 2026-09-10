@@ -22,11 +22,33 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # The brand mark, while it is missing from this repository.
+      #
+      # Every file here arrived through the contents API, which takes text, so
+      # the one binary in the project could not come with it — and without it
+      # the mark is a broken image on the first screen and the last. PULSE 01
+      # is public and holds the identical file, so the build borrows it.
+      #
+      # Conditional on purpose: commit public/brand/nucleus-logo.webp here and
+      # this step does nothing from then on.
+      - name: Fetch brand mark if absent
+        run: |
+          if [ ! -f public/brand/nucleus-logo.webp ]; then
+            mkdir -p public/brand
+            curl -fsSL -o public/brand/nucleus-logo.webp \
+              https://raw.githubusercontent.com/RivoHenfri/nucleus-pulse/main/public/brand/nucleus-logo.webp
+            echo "borrowed the mark from nucleus-pulse ($(wc -c < public/brand/nucleus-logo.webp) bytes)"
+          else
+            echo "the mark is committed here; nothing to fetch"
+          fi
+
       # npm install rather than npm ci: package-lock.json is not committed here
       # yet. Put it in and this becomes `npm ci` with `cache: npm`, exactly as
       # PULSE 01 has it.
       - run: npm install
       - run: npm run build
+
       # enablement turns Pages on for the repo on the first run where the token
       # is allowed to. On a repository where Pages has never been switched on,
       # this step answers "Resource not accessible by integration" — PULSE 01

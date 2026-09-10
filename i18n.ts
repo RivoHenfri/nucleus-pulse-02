@@ -10,6 +10,12 @@
 // *values* are not — translating "SOLD" to "TERJUAL" would make the Registry
 // card read as something the app wrote rather than something a system printed,
 // and the whole workspace depends on those cards being believable.
+//
+// WHO IS WAITING. A teammate, not the client. The question used to come from a
+// client, which reads as coming from outside the building — and the ladder's
+// first rung is "suppose you're only replying internally", which has nowhere to
+// stand if the person waiting was never internal. The question itself is
+// unchanged, word for word; only the person waiting for it moved inside.
 
 import type { AnswerId, Confidence, LadderStep, SourceId } from './types';
 
@@ -36,7 +42,7 @@ const EN = {
     pulse: '02 — TRUTH',
     clock: '09:42 AM',
     lines: [
-      'A client is waiting for an update.',
+      'A teammate is waiting for an answer.',
       '“Can you confirm the current status of Plot A17?”',
       'You have a few places you can check.',
       'Answer when you think you know enough.',
@@ -113,7 +119,7 @@ const EN = {
   } as Record<SourceId, SourceCopy>,
 
   answer: {
-    title: 'What would you tell the client?',
+    title: 'So — what do you send back?',
     options: {
       reserved: 'RESERVED',
       sold: 'SOLD',
@@ -223,7 +229,7 @@ const ID: typeof EN = {
     pulse: '02 — TRUTH',
     clock: '09:42',
     lines: [
-      'Seorang klien sedang menunggu update.',
+      'Rekan setim sedang menunggu jawaban.',
       '“Bisa konfirmasi status Plot A17 sekarang?”',
       'Ada beberapa tempat yang bisa kamu cek.',
       'Jawab ketika kamu merasa sudah cukup tahu.',
@@ -298,7 +304,7 @@ const ID: typeof EN = {
   } as Record<SourceId, SourceCopy>,
 
   answer: {
-    title: 'Apa yang kamu sampaikan ke klien?',
+    title: 'Jadi — apa yang kamu balas?',
     options: {
       reserved: 'RESERVED',
       sold: 'SOLD',

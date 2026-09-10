@@ -5,10 +5,13 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# contents:write is all this needs. It is deliberately NOT using the Pages API
+# (actions/configure-pages + deploy-pages): on a fresh repository that API
+# answers "Resource not accessible by integration" unless someone has already
+# turned Pages on by hand, which is exactly the manual step this is here to
+# avoid. Pushing a branch needs no such permission.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -26,21 +29,23 @@ jobs:
       # API is public over HTTPS and holds no key the browser needs.
       - run: npm install
       - run: npm run build
-      # enablement turns Pages on for the repo on the first run, so nobody has
-      # to flip it by hand in Settings before the first deploy.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Pages runs Jekyll over a branch deploy unless told not to, and Jekyll
+      # silently drops anything whose name starts with an underscore. Vite does
+      # not emit such names today, but the failure mode is a missing asset with
+      # no error anywhere, so the file goes in regardless.
+      - run: touch dist/.nojekyll
+
+      - name: Publish dist/ to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          git init -q
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Deploy ${GITHUB_SHA}"
+          # Force, because this branch is build output and has no history worth
+          # keeping — every deploy is a complete replacement of the site.
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages

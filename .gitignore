@@ -1,0 +1,25 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# Secrets
+.env.local
+.dev.vars
+worker/.wrangler
+.gstack/
+
+# The narration renderer reads the OpenRouter key from here when it is not
+# already in the environment (bws run injects it).
+narration/.env

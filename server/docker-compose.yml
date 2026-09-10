@@ -1,0 +1,44 @@
+# The PULSE 02 room, on the VPS.
+#
+# ONE CONTAINER, AND DELIBERATELY NO CADDY.
+#
+# PULSE 01's stack already owns 80 and 443 on this host. A second Caddy here
+# would lose the bind and the whole stack would come up half-dead, so this
+# compose ships the API alone and joins the network PULSE 01's Caddy is
+# already on. Adding the hostname is a two-line edit to that Caddyfile — see
+# ./Caddyfile in this directory for the block to paste.
+#
+# The API is never exposed on a host port. The only way in is through the
+# existing Caddy over HTTPS, which is also the only way a page served from
+# GitHub Pages is allowed to talk to it.
+#
+# Its data is its own: a separate volume and a separate SQLite file, so a
+# PULSE 01 room and a PULSE 02 room can never end up in the same table.
+
+services:
+  api:
+    build: .
+    container_name: nucleus-02-api
+    restart: unless-stopped
+    environment:
+      PORT: "3000"
+      DB_PATH: /data/nucleus-02.sqlite
+      # The model key for the room reading. Lives in ./.env on the host, which
+      # is never committed; the browser never sees it.
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      READING_MODEL: ${READING_MODEL:-anthropic/claude-sonnet-4.5}
+    volumes:
+      - nucleus02-data:/data
+    networks: [nucleus]
+
+volumes:
+  nucleus02-data:
+
+networks:
+  # The network PULSE 01's compose project created. `external: true` means
+  # this project joins it rather than making a second one — without that,
+  # Caddy and this API would sit on different networks and the proxy would
+  # never resolve `nucleus-02-api`.
+  nucleus:
+    external: true
+    name: nucleus_nucleus

@@ -1,0 +1,30 @@
+# NOT A FILE THIS PROJECT SERVES. It is the block to paste into the Caddyfile
+# PULSE 01's stack is already running, because that Caddy owns 80 and 443 on
+# this host and a second one here would simply lose the bind.
+#
+# Two things have to exist before it works:
+#
+#   1. A DNS A record for nucleus-02-api.rivohenfri.cloud pointing at this VPS.
+#      Caddy asks Let's Encrypt for the certificate itself, and that request
+#      fails if the name does not already resolve here.
+#
+#   2. This project's API container running and joined to the same network —
+#      see docker-compose.yml, which joins PULSE 01's network rather than
+#      creating a second one.
+#
+# Then: paste the block below into PULSE 01's Caddyfile, and
+# `docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile`.
+
+nucleus-02-api.rivohenfri.cloud {
+	log {
+		output stdout
+		format json
+	}
+	encode zstd gzip
+	reverse_proxy nucleus-02-api:3000
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+	}
+}

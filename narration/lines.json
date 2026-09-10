@@ -13,14 +13,14 @@
   },
   "languages": {
     "en": {
-      "enter-1": "A client is waiting for an update.",
+      "enter-1": "A teammate is waiting for an answer.",
       "enter-2": "Can you confirm the current status of Plot A seventeen?",
       "enter-3": "You have a few places you can check.",
       "enter-4": "Answer when you think you know enough.",
 
       "workspace": "Open whatever you need.",
 
-      "answer": "So — what would you tell the client?",
+      "answer": "So — what do you send back?",
 
       "reveal-1": "You didn't have the whole picture.",
       "reveal-1-all": "The six of them still didn't say the same thing.",
@@ -38,14 +38,14 @@
       "end-3": "Because you decide you know enough for what happens next."
     },
     "id": {
-      "enter-1": "Seorang klien sedang menunggu update.",
+      "enter-1": "Rekan setim sedang menunggu jawaban.",
       "enter-2": "Bisa konfirmasi status Plot A tujuh belas sekarang?",
       "enter-3": "Ada beberapa tempat yang bisa kamu cek.",
       "enter-4": "Jawab ketika kamu merasa sudah cukup tahu.",
 
       "workspace": "Buka apa pun yang kamu perlukan.",
 
-      "answer": "Jadi — apa yang kamu sampaikan ke klien?",
+      "answer": "Jadi — apa yang kamu balas?",
 
       "reveal-1": "Kamu belum memiliki gambaran utuhnya.",
       "reveal-1-all": "Keenamnya pun tetap tidak mengatakan hal yang sama.",

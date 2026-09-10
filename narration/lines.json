@@ -1,15 +1,15 @@
 {
-  "voice": "ballad",
-  "note": "Numbers are spelled out on purpose: the model reads digits inconsistently, and the verifier compares what it actually said against this script word for word. Nothing built from a participant's own run is in here — counts, remainders, clock readings and their own two words are all rendered on screen and left unspoken, because a voice reading someone their own numbers back turns a mirror into a report.",
+  "voice": "alloy",
+  "note": "Voice: alloy. PULSE 01 used ballad, which is breathy and intimate — the wrong register for someone deciding at work. alloy is plainer and measurably quicker: 2.28s against ballad-family reads of 2.6–2.9s for the identical line. Numbers are spelled out on purpose: the model reads digits inconsistently, and the verifier compares what it actually said against this script word for word. Nothing built from a participant's own run is in here — counts, remainders, clock readings and their own two words are all rendered on screen and left unspoken, because a voice reading someone their own numbers back turns a mirror into a report.",
   "direction": {
-    "_": "calm, warm, unhurried; one person speaking to one person in a quiet room",
-    "enter": "ordinary and practical, a colleague passing something on; no weight on the last line, it is help and not a rule",
-    "workspace": "plain and brief, then out of the way; nothing here should sound like an instruction about how much to check",
-    "answer": "light, almost conversational; the question a colleague asks over a desk",
-    "reveal": "quiet and level, straight after a pause; stating what happened, never marking it",
-    "mirror": "slow and steady, and completely without judgement; these two sentences are the point of the whole Pulse and they must not sound like a verdict",
-    "ladder": "even and unhurried; the same tone for all three, so the escalation comes from the stakes and not from the voice",
-    "end": "settled and warm, the way a thing is closed rather than concluded"
+    "_": "calm and warm, but moving. This is someone deciding with incomplete information, not someone meditating: present, a little forward-leaning, no dawdling and no dramatic pauses. The weight comes from what is said, never from slowing down to say it.",
+    "enter": "practical and quick, a colleague handing something over on their way past. The last line is help, not a rule - no weight on it.",
+    "workspace": "brief, then out of the way. Nothing here may sound like an instruction about how much to check.",
+    "answer": "light and conversational, the question asked across a desk with someone waiting for the reply.",
+    "reveal": "level and unhurried in tone but not slow in pace; straight after a pause, stating what happened and never marking it.",
+    "mirror": "steady and completely without judgement, and still moving. These two sentences are the point of the whole Pulse - they must land as recognition, never as a verdict, and never as a sermon.",
+    "ladder": "even and brisk, the same tone for all three, so the escalation comes from the stakes and not from the voice.",
+    "end": "settled but still moving; a thing being closed, not a conclusion being delivered."
   },
   "languages": {
     "en": {
@@ -17,22 +17,15 @@
       "enter-2": "Can you confirm the current status of Plot A seventeen?",
       "enter-3": "You have a few places you can check.",
       "enter-4": "Answer when you think you know enough.",
-
       "workspace": "Open whatever you need.",
-
       "answer": "So — what do you send back?",
-
       "reveal-1": "You didn't have the whole picture.",
       "reveal-1-all": "The six of them still didn't say the same thing.",
       "reveal-2": "But you decided you knew enough to answer.",
-
       "unchecked": "All six, open.",
-
       "mirror-1": "Nobody told you when you knew enough.",
       "mirror-2": "You decided that yourself.",
-
       "ladder": "The same thing you know right now.",
-
       "end-1": "You will rarely have the whole picture. And there will almost always be another source you could check.",
       "end-2": "At some point, you stop. Not because you know everything.",
       "end-3": "Because you decide you know enough for what happens next."
@@ -42,22 +35,15 @@
       "enter-2": "Bisa konfirmasi status Plot A tujuh belas sekarang?",
       "enter-3": "Ada beberapa tempat yang bisa kamu cek.",
       "enter-4": "Jawab ketika kamu merasa sudah cukup tahu.",
-
       "workspace": "Buka apa pun yang kamu perlukan.",
-
       "answer": "Jadi — apa yang kamu balas?",
-
       "reveal-1": "Kamu belum memiliki gambaran utuhnya.",
       "reveal-1-all": "Keenamnya pun tetap tidak mengatakan hal yang sama.",
       "reveal-2": "Tapi kamu memutuskan sudah cukup tahu untuk menjawab.",
-
       "unchecked": "Keenamnya, terbuka.",
-
       "mirror-1": "Tidak ada yang memberi tahu kamu kapan kamu sudah cukup tahu.",
       "mirror-2": "Kamu sendiri yang memutuskan.",
-
       "ladder": "Hal yang sama yang kamu tahu sekarang.",
-
       "end-1": "Kamu jarang akan punya gambaran utuhnya. Dan hampir selalu ada satu sumber lagi yang bisa dicek.",
       "end-2": "Pada satu titik, kamu berhenti. Bukan karena kamu tahu segalanya.",
       "end-3": "Tapi karena kamu memutuskan kamu cukup tahu untuk apa yang terjadi berikutnya."

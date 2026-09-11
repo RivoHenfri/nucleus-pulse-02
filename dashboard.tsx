@@ -54,7 +54,7 @@ const RUNG = '#3987e5';
 const UNSEEN = '#8a7f6d';
 
 /** Below this the charts do not render. */
-const FLOOR = 5;
+const FLOOR = 3;
 
 const ANSWER_IDS: AnswerId[] = ['reserved', 'sold', 'in-process', 'validate-first'];
 const CONF_IDS: Confidence[] = ['high', 'medium', 'low'];

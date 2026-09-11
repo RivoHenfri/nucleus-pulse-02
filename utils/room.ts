@@ -16,6 +16,12 @@ import type { AnswerId, Confidence, LadderStep, SourceId } from '../types';
 /**
  * Where the room lives.
  *
+ * PULSE 02 shares PULSE 01's hostname and certificate, under /p2. A hostname
+ * of its own would need a DNS record before Let's Encrypt would issue for it;
+ * a path needs nothing. Caddy strips the prefix, so the server sees /rooms and
+ * /responses exactly as it would on a host of its own and knows nothing about
+ * the path it is reached by.
+ *
  * Overridable at build time so a laptop running `bun server/index.ts` can be
  * driven by the real app during a build week — `VITE_ROOM_API=http://localhost:3000
  * npm run dev`. Without the override it is the deployed API, which is what
@@ -23,7 +29,7 @@ import type { AnswerId, Confidence, LadderStep, SourceId } from '../types';
  */
 export const ROOM_API =
   (import.meta as unknown as { env?: { VITE_ROOM_API?: string } }).env?.VITE_ROOM_API ??
-  'https://nucleus-02-api.rivohenfri.cloud';
+  'https://nucleus-api.rivohenfri.cloud/p2';
 
 const KEY = 'nucleus.room02';
 

@@ -1,27 +1,39 @@
-# NOT A FILE THIS PROJECT SERVES. It is the block to paste into the Caddyfile
-# PULSE 01's stack is already running, because that Caddy owns 80 and 443 on
-# this host and a second one here would simply lose the bind.
+# NOT A FILE THIS PROJECT SERVES. It is the shape of the site block in the
+# Caddyfile PULSE 01's stack is already running, because that Caddy owns 80 and
+# 443 on this host and a second one here would simply lose the bind.
 #
-# Two things have to exist before it works:
+# PULSE 02 lives under /p2 on PULSE 01's hostname rather than on a name of its
+# own. A second name needs a DNS record before Let's Encrypt will issue for it;
+# a path needs nothing, and one certificate already covers this name.
+# handle_path strips the prefix, so the PULSE 02 container sees /health, /rooms
+# and /responses exactly as it would on a host of its own — its code contains
+# no knowledge of the path it is reached by.
 #
-#   1. A DNS A record for nucleus-02-api.rivohenfri.cloud pointing at this VPS.
-#      Caddy asks Let's Encrypt for the certificate itself, and that request
-#      fails if the name does not already resolve here.
+# The PULSE 01 proxy must be wrapped in `handle` too. A bare reverse_proxy in
+# the same block is not exclusive with handle_path and would also swallow /p2.
 #
-#   2. This project's API container running and joined to the same network —
-#      see docker-compose.yml, which joins PULSE 01's network rather than
-#      creating a second one.
-#
-# Then: paste the block below into PULSE 01's Caddyfile, and
-# `docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile`.
+# Apply with:
+#   docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
+#   docker compose exec caddy caddy reload   --config /etc/caddy/Caddyfile
+# Validate first. A reload with a bad config takes the running site with it.
 
-nucleus-02-api.rivohenfri.cloud {
+nucleus-api.rivohenfri.cloud {
 	log {
 		output stdout
 		format json
 	}
 	encode zstd gzip
-	reverse_proxy nucleus-02-api:3000
+
+	# PULSE 02 — TRUTH
+	handle_path /p2/* {
+		reverse_proxy nucleus-02-api:3000
+	}
+
+	# PULSE 01 — SIGNAL
+	handle {
+		reverse_proxy api:3000
+	}
+
 	header {
 		-Server
 		Strict-Transport-Security "max-age=31536000"

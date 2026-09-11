@@ -5,8 +5,8 @@
 # PULSE 01's stack already owns 80 and 443 on this host. A second Caddy here
 # would lose the bind and the whole stack would come up half-dead, so this
 # compose ships the API alone and joins the network PULSE 01's Caddy is
-# already on. Adding the hostname is a two-line edit to that Caddyfile — see
-# ./Caddyfile in this directory for the block to paste.
+# already on. Adding the route is a small edit to that Caddyfile — see
+# ./Caddyfile in this directory for the block.
 #
 # The API is never exposed on a host port. The only way in is through the
 # existing Caddy over HTTPS, which is also the only way a page served from
@@ -16,15 +16,25 @@
 # PULSE 01 room and a PULSE 02 room can never end up in the same table.
 
 services:
-  api:
+  # NOT named "api". Docker registers a network alias for the service name, and
+  # PULSE 01's service on this shared network is already called "api" — so a
+  # second one makes that alias round-robin between two different Pulses, and
+  # PULSE 01's own traffic starts landing here. It did, for about a minute.
+  # Caddy reaches this container by its container_name, which is unique.
+  api02:
     build: .
     container_name: nucleus-02-api
     restart: unless-stopped
+    # House rule on this box: every container declares a ceiling, so one
+    # runaway process cannot take the others down with it. A room of forty
+    # phones posting once each is nothing; 256m is generous.
+    mem_limit: 256m
     environment:
       PORT: "3000"
       DB_PATH: /data/nucleus-02.sqlite
       # The model key for the room reading. Lives in ./.env on the host, which
-      # is never committed; the browser never sees it.
+      # is never committed; the browser never sees it. Absent, the reading is
+      # simply missing and the rest of the facilitator screen works.
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       READING_MODEL: ${READING_MODEL:-anthropic/claude-sonnet-4.5}
     volumes:
@@ -41,4 +51,8 @@ networks:
   # never resolve `nucleus-02-api`.
   nucleus:
     external: true
-    name: nucleus_nucleus
+    # PULSE 01's compose project is literally named "nucleus-room", so the
+    # network it created is nucleus-room_nucleus. Guessing "nucleus_nucleus"
+    # here would make compose create a second, empty network of that name and
+    # the proxy would never resolve this container.
+    name: nucleus-room_nucleus

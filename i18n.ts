@@ -211,11 +211,14 @@ const EN = {
     ],
     mark: 'TRUTH',
     question: 'What do you trust?',
-    // The handoff, the way PULSE 01 handed off to this one. Named only — no
-    // bridge line and no question yet, because both belong to whoever decides
-    // what ORBIT asks, and inventing them here would decide it by accident.
+    // The handoff, the way PULSE 01 handed off to this one: the next Pulse
+    // named, and its question posed. PULSE 01 ended on "What do you trust?"
+    // and this Pulse spent four minutes answering it; ORBIT's question is
+    // placed here for the same reason, so the sequence reads as one line of
+    // thought rather than three separate mornings.
     next: 'NEXT PULSE',
     orbit: 'ORBIT',
+    orbitQuestion: 'Where do you belong in the problem?',
     restart: 'RUN IT AGAIN',
   },
 
@@ -399,6 +402,7 @@ const ID: typeof EN = {
     question: 'Apa yang kamu percaya?',
     next: 'PULSE BERIKUTNYA',
     orbit: 'ORBIT',
+    orbitQuestion: 'Di mana posisimu dalam masalah itu?',
     restart: 'JALANKAN LAGI',
   },
 

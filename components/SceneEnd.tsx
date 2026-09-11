@@ -91,6 +91,7 @@ const SceneEnd: React.FC<Props> = ({ lang, onRestart }) => {
       <Beat show={shown >= 8} className="mt-16">
         <p className="text-[10px] font-semibold tracking-[0.32em] text-gray-600">{c.next}</p>
         <p className="font-display mt-2 text-[15px] tracking-[0.28em] text-gray-400">{c.orbit}</p>
+        <p className="mt-3 text-[13px] leading-relaxed text-gray-500">{c.orbitQuestion}</p>
       </Beat>
 
       <Continue show={ready} label={c.restart} onClick={onRestart} />

@@ -211,6 +211,11 @@ const EN = {
     ],
     mark: 'TRUTH',
     question: 'What do you trust?',
+    // The handoff, the way PULSE 01 handed off to this one. Named only — no
+    // bridge line and no question yet, because both belong to whoever decides
+    // what ORBIT asks, and inventing them here would decide it by accident.
+    next: 'NEXT PULSE',
+    orbit: 'ORBIT',
     restart: 'RUN IT AGAIN',
   },
 
@@ -392,6 +397,8 @@ const ID: typeof EN = {
     ],
     mark: 'TRUTH',
     question: 'Apa yang kamu percaya?',
+    next: 'PULSE BERIKUTNYA',
+    orbit: 'ORBIT',
     restart: 'JALANKAN LAGI',
   },
 
